@@ -1,0 +1,145 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="box">
+                    <article class="media my-4">
+                        <figure class="media-left">
+                            <p class="image is-64x64">
+                                <img class="is-rounded" src="{% static 'images/fred.jpeg' %}" alt="king">
+                            </p>
+                        </figure>
+                        <div class="media-content">
+                            <div class="content">
+                                <div class="title">
+                                    {{ king.first_name }} {{ king.last_name }}
+                                    <span class="tag is-success">King</span>
+                                </div>
+                                <span class="subtitle has-text-weight-semibold">
+                                    {{ king.reign_started.year }}-...
+                                    <br>
+                                    {{ king.country }}
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                    {% if value == 'seniors' %}
+                        <div class="title is-4 has-text-centered">Subordinate seniors</div>
+                        {% for senior in king.senior_set.all %}
+                            <button class="accordion">
+                                {{ senior.first_name }} {{ senior.last_name }}
+                                <span class="tag is-warning">Senior</span>
+                            </button>
+                            <div class="accordion_panel">
+                                <ol class="p-5 ml-6">
+                                    {% for dweller in senior.dweller_set.all %}
+                                        <li>
+                                            {{ dweller.first_name }} {{ dweller.last_name }}
+                                            has {{ dweller.peasant_set.all.count }} peasants -
+                                            {% for peasant in dweller.peasant_set.all %}
+                                                <span class=" has-text-grey-light">{{ peasant.first_name }},</span>
+                                            {% endfor %}
+                                        </li>
+                                    {% endfor %}
+                                </ol>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if value == 'dwellers' %}
+                        <div class="title has-text-centered">
+                            Table of dwellers
+                        </div>
+                        <div class="columns is-centered">
+                            <div class="column">
+                                <a class="button is-primary" href="{% url 'estates:create_dweller' %}">
+                                    <ion-icon name="add-outline"></ion-icon>
+                                    &nbsp;
+                                    Create a new dweller
+                                </a>
+
+                            </div>
+                            <div class="column is-flex is-justify-content-end">
+                                <form action="{% url 'estates:hierarchy' value="dwellers" %}" method="get">
+                                    <div class="field has-addons">
+                                        <div class="control">
+                                            <input class="input" type="search" placeholder="Find an article"
+                                                   name="search">
+                                        </div>
+                                        <div class="control">
+                                            <button class="button is-info" type="submit">
+                                                <ion-icon name="search-outline"></ion-icon>
+                                                &nbsp;
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table class="table is-striped is-hoverable is-fullwidth mt-6">
+                            <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Age</th>
+                                <th>Social Status</th>
+                                <th>Salary</th>
+                                <th>Obeys to</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for dweller in dwellers %}
+                                <tr>
+                                    <td>
+                                        {{ dweller.first_name }} {{ dweller.last_name }}
+                                    </td>
+                                    <td>{{ dweller.age }}</td>
+                                    <td>{{ dweller.social_status }}</td>
+                                    <td>{{ dweller.salary_per_month }} $</td>
+                                    <td>Senior {{ dweller.obeys_to.first_name }} {{ dweller.obeys_to.last_name }}</td>
+                                    <td>
+                                        <a style="font-size: 25px" class="has-text-info is-clickable"
+                                           href="{% url 'estates:edit_dweller' dweller.pk %}">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </a>
+                                        <a style="font-size: 25px" class="has-text-danger is-clickable"
+                                           href="{% url 'estates:delete_dweller' dweller.pk %}">
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                    {% if value == 'peasants' %}
+                        <div class="title has-text-centered">Table of peasants</div>
+                        <table class="table is-bordered is-fullwidth">
+                            <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Age</th>
+                                <th>Owner</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for peasant in peasants %}
+                                <tr>
+                                    <td>
+                                        {{ peasant.first_name }} {{ peasant.last_name }}
+                                    </td>
+                                    <td>{{ peasant.age }}</td>
+                                    <td>Dweller {{ peasant.owner.first_name }} {{ peasant.owner.last_name }} </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

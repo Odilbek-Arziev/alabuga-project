@@ -1,0 +1,102 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+<section class="hero is-fullheight">
+    <div class="hero-head">
+        <header class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="{% url 'estates:home' %}">
+                        <img src="{% static 'images/logo.svg' %}" alt="Logo">
+                    </a>
+                    <span class="navbar-burger" data-target="navbarMenuHeroC">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div id="navbarMenuHeroC" class="navbar-menu">
+                    <div class="navbar-end">
+
+                        <a class="navbar-item" href="{% url 'estates:hierarchy' value='seniors' %}">
+                            Seniors
+                        </a>
+                        <a class="navbar-item" href="{% url 'estates:hierarchy' value='dwellers' %}">
+                            Dwellers
+                        </a>
+                        <a class="navbar-item" href="{% url 'estates:hierarchy' value='peasants' %}">
+                            Peasants
+                        </a>
+                        {% if user.is_authenticated %}
+                            <div class="navbar-item">
+                                <div class="dropdown is-hoverable">
+                                    <div class="dropdown-trigger">
+                                        <button class="button is-warning" aria-haspopup="true"
+                                                aria-controls="dropdown-menu">
+                                            Welcome: <span class="has-text-weight-bold mx-2">{{ user }}</span>
+                                        </button>
+                                    </div>
+                                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                        <div class="dropdown-content">
+                                            <a href="{% url 'users:edit_profile' %}" class="dropdown-item">
+                                                Edit profile
+                                            </a>
+                                            <a href="{% url 'users:reset_password' %}" class="dropdown-item">
+                                                Reset password
+                                            </a>
+                                            <hr class="dropdown-divider">
+                                            <a href="{% url 'users:sign_out' %}" class="dropdown-item has-text-danger">
+                                                Sign out
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a class="navbar-item" href="{% url 'users:sign_in' %}">
+                                <button class="button is-success">
+                                    Sign in
+                                </button>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="hero-body">
+        {% block cv %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block auth %}
+        {% endblock %}
+
+    </div>
+</section>
+<script>
+    let acc = document.getElementsByClassName("accordion");
+
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                let panel = this.nextElementSibling;
+                panel.style.maxHeight
+                    ? panel.style.maxHeight = null
+                    : panel.style.maxHeight = panel.scrollHeight + "px"
+            }
+        )
+    }
+</script>
+</body>
+</html>

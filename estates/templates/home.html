@@ -1,0 +1,131 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block cv %}
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-9">
+                <div class="box p-6">
+                    <div class="columns">
+                        <div class="column is-3 is-flex is-align-content-center is-justify-content-center">
+                            <figure class="image">
+                                <img class="is-rounded" src="{% static 'images/IMG_0221.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                        <div class="column ml-6">
+                            <div class="title is-1 " style="font-size: 60px">Одилбек Арзиев</div>
+                            <div class="content is-size-3 has-text-weight-light">full-stack разработчик, <br>
+                                преподаватель
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="columns has-text-grey">
+                        <div class="column is-3 ">
+                            <div class="title">Образование</div>
+                            <hr class="has-background-warning" style="width: 40px">
+                            <div class="content">
+                                <div class='text'>2022-н.в</div>
+                                <div class="text">Отдел «Программное обеспечение информационных систем»</div>
+                                <div class="text">Факультет «Информатика и вычислительная техника»</div>
+                                <div class="text">Московский Политехнический Университет</div>
+                            </div>
+                            <br><br>
+                            <div class="content ">
+                                <div class='text'>2018-2022</div>
+                                <div class="text">Отдел «Английский язык и литература»</div>
+                                <div class="text">Факультет «Иностранные языки»</div>
+                                <div class="text">Бухарский Государственный Университет, Узбекистан</div>
+                            </div>
+                            <div class="title">Контакты</div>
+                            <hr class="has-background-warning" style="width: 40px">
+                            <div class="content">
+                                <div class='text has-text-weight-semibold'>Телефон</div>
+                                <div class="text">+998(88)300-04-20</div>
+                                <br><br>
+                                <div class='text has-text-weight-semibold'>Почта</div>
+                                <div class="text">odarziev@mail.ru</div>
+                                <br><br>
+                                <div class='text has-text-weight-semibold'>Соцсети</div>
+                                <div class="columns mt-2">
+                                    <div class="column is-2">
+                                        <a href="https://t.me/odil_arziev" class="">
+                                            <figure class="image is-24x24">
+                                                <img src="{% static 'images/telegram.svg' %}" alt="">
+                                            </figure>
+                                        </a>
+                                    </div>
+                                    <div class="column is-2">
+                                        <a href="https://www.instagram.com/odil_arziev/"
+                                           class="">
+                                            <figure class="image is-24x24">
+                                                <img src="{% static 'images/instagram.svg' %}" alt="">
+                                            </figure>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column ml-6">
+                            <div class="title">Обо мне</div>
+                            <hr class="has-background-warning" style="width: 40px">
+                            <div class="content mb-6">
+                                22-летний специалист с законченным высшим образованием и опытом работы с сфере
+                                веб-разработки,
+                                преподавания и составления методических лецкий и видеоуроков.
+                                Широкий спектр владения технологиями HTML/CSS, Python, Django, DRF, JavaScript/React,
+                                Strapi, Git, Aiogram, Telebot, SQL, Bulma/BootStrap.
+                                Навыки ведения презентаций и спичей
+                                Свободное владение русским и английским языком, поставленная речь.
+                            </div>
+                            <div class="title">Опыт работы</div>
+                            <hr class="has-background-warning" style="width: 40px">
+                            <div class="columns">
+                                <div class="column is-5">
+                                    <div class="content">
+                                        2021.07.01-2022.08.01
+                                        <br>
+                                        ООО "Monday Labs Academy"
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="content has-text-weight-semibold">Ментор</div>
+                                    обучение студентов работе с HTML/CSS, Bulma,преподавание основ Backend
+                                    (Python/Django/Git), Frontend(JS/ReactJS/Strapi), помощь в составлении портфолио
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column is-5">
+                                    <div class="content">
+                                        2020.01.01-2021.07.01
+                                        <br>
+                                        ООО "Monday Labs"
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="content has-text-weight-semibold">Fullstack разработчик</div>
+                                    Планирование, управление и реализация проекта на определенном языке
+                                    программирования, переговоры с заказчиками, тестирование готовой интернет-платформы
+                                    и отладка багов.
+                                </div>
+                            </div>
+                            <div class="title">Навыки</div>
+                            <hr class="has-background-warning" style="width: 40px">
+
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">Bulma/BootStrap</span>
+                            <br><br>
+                            <span class="tag">Python</span>
+                            <span class="tag">Django</span>
+                            <span class="tag">JS</span>
+                            <span class="tag">ReactJS</span>
+                            <span class="tag">GIT</span>
+                            <span class="tag">PostgreSQL</span>
+                            <br><br>
+                            <span class="tag">Adobe Premiere Pro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

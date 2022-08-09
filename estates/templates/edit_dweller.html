@@ -1,0 +1,40 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <div class="box">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="title has-text-centered">
+                            Edit info about {{ dweller.first_name }} {{ dweller.last_name }}
+                        </div>
+                        {% for field in form %}
+                            {% if field.name == 'social_status' or  field.name == 'obeys_to' %}
+                                <div class="select is-fullwidth mt-6">
+                                    <div class="field ">
+                                        <label for="{{ field.id_for_label }}"
+                                               class="label is-size-6">{{ field.label }}</label>
+                                        <div class="control">
+                                            {{ field }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="field">
+                                    <label for="{{ field.id_for_label }}"
+                                           class="label is-size-6">{{ field.label }}</label>
+                                    <div class="control">
+                                        {{ field }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <button type="submit" class="button is-fullwidth is-success mt-6">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

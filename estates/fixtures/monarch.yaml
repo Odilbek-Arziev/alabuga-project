@@ -1,0 +1,11 @@
+-
+    model: "estates.Monarch"
+    pk: 1
+    fields:
+        first_name: 'Frederick'
+        last_name: 'Barbarossa'
+        age: 40
+        reign_started: '1155-08-01'
+        country: 'Germany'
+        created_at: '2022-08-01 00:00:00+00:00'
+        updated_at: '2022-08-01 00:00:00+00:00'
